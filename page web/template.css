@@ -1,15 +1,66 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f4f7fb;
-    color: #333;
+
+
+    display: grid;
 }
 
 header {
-    background: linear-gradient(135deg, #004aad, #007bff);
-    color: white;
+    background: linear-gradient(135deg, #021b3b, #013c7c, #021b3b);
+    color: rgb(255, 255, 255);
+    text-shadow: 5px 5px 10px rgb(0, 0, 0);
     text-align: center;
     padding: 30px 20px;
+}
+
+
+.div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-rows: 1fr ;
+    
+    align-content: space-evenly;
+    padding: 1px;
+    margin: 5px;
+}
+
+section{
+    display: grid;
+    align-items: center;
+    text-align: center;
+    border: #013c7c solid;
+}
+
+
+.system{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.cpu{
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.memory{
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+.network{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.processor{
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.folder{
+    grid-column: 3/4;
+    grid-row: 1/2;
 }
 
 h1 {
@@ -25,4 +76,8 @@ footer {
     padding: 15px;
     background: #eee;
     margin-top: 40px;
+}
+
+.git_logo{
+    width: 70px;
 }
