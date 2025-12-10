@@ -1,4 +1,4 @@
-import psutil # import de la bibiliotheque pour monitor le system
+import psutil # library to monitor the system
 import platform 
 import time #library for time mangement 
 import socket #library for network management to retrieve ip
@@ -7,98 +7,89 @@ import pathlib
 
 """ informations CPU """
 
-print(psutil.cpu_count()) #fonction pour compter le nombre de coeurs
-print(psutil.cpu_freq().current) #fonction pour recuperer la frequence CPU
-print(psutil.cpu_percent(0)) #fonction pour recuperer le pourcentage d'utilisation CPU avec interval de temps en seconde
+amount_of_cores = psutil.cpu_count() #var that stores the amount of cores 
+current_cpu_frequency = psutil.cpu_freq().current #var that stores the current CPU frequency
+usage_cpu = psutil.cpu_percent(0) #var that stores pourcentage of CPU usage in an interval of X seconds
 
 """ informations RAM """
 
-print(psutil.virtual_memory()) #fonction qui retourne un tuple d'informations sur la memoire en byte ! 
-memory = psutil.virtual_memory()
-print(memory.used) #recupere du tuple uniquement la memoire utilisé 
-print(memory.total) #recupere du tuple uniquement la memoire totale
-print(memory.percent) #recupere du tuple uniquement le pourcentage de memoire utilisé
-
+memory = psutil.virtual_memory() #var that stores a tuple a tuple of informations about memory
+used_memory = memory.used / (1024 ** 3)#var storing the used  memory in gb
+total_memory = memory.total / (1024 ** 3) #var storing the total memory in gb
+used_memory = memory.percent #var storing the percentage of used memory 
 """ informations systeme """
 
-print(platform.node()) #recupere le nom de la machine
-print(platform.platform())
-print(platform.system()) #recupere le nom system d'exploitation 
-print(platform.version()) #recupere la version du system d'exploitation
-print(psutil.boot_time()) #recupere l'heure de boot
-print(time.time()-psutil.boot_time()) #recupere le temps écoulé depuis le démarage
-print(psutil.users()) #tuple contenant infos sur les users
+machine_name = platform.node() #var storing the name of the machine
+os_name_version =platform.platform() #var storing the name and version of OS
+boot_time = psutil.boot_time() #var storing the boot time
+time_since_boot = (time.time()-psutil.boot_time()) #var storing time since boot
 users = psutil.users()# Get the list of users
 number_users = len(users) #get the length of the list of users in other words the amount of users
-print(number_users)
 host = socket.gethostname() #get the host's name (machine)
-print(host)
 ip_address = socket.gethostbyname(host) #get ip adress using the host's name
-print (ip_address)
 
 """ informations about processes """
 
-dictionary_of_pid= {}
+dictionary_of_pid= {} #dictionary containing the processes 
 processes = list(psutil.process_iter())
-cpu_count = psutil.cpu_count()
 
-for p in processes:
-        p.cpu_percent()
+
+for p in processes: #go through all the processes 
+        p.cpu_percent() # get the interval
 
 time.sleep(0)
 
 for p in processes:
-        cpu = p.cpu_percent() / cpu_count
+        cpu = p.cpu_percent() / amount_of_cores #CPU usage per core of process
+        name = p.name() #process' name
+        mem = p.memory_percent() #memory usage of process
         
-        name = p.name()
-        mem = p.memory_info().rss  
-        
-        dictionary_of_pid[p.pid] = {
+        dictionary_of_pid[p.pid] = { #fill the dictionary with corresponding items
             'name': name,
-            'ram_bytes': mem,
+            'ram_percent': mem,
             'cpu_percent': cpu
         }
-pprint.pprint(dictionary_of_pid)
+pprint.pprint(dictionary_of_pid) #display the dictionary using pretty print 
 
-
+#top three per CPU consumption usage
 cpu_consumption_list = []
-
-# 2. Loop through your complex dictionary
-for pid, details in dictionary_of_pid.items():
+for pid, details in dictionary_of_pid.items(): #loop through the dictionary 
     cpu = details['cpu_percent']
     name = details['name']
-    
-    # 3. Add a list to simple_list. 
-    # IMPORTANT: Put 'cpu' first! Python sorts by the first item it sees.
-    cpu_consumption_list.append([cpu, name, pid])
-    
-
-# 4. Sort the list. 
-# Since 'cpu' is index 0, it sorts by CPU automatically.
-cpu_consumption_list.sort(reverse=True)
-
-# 5. Get the top 3
-top_3 = cpu_consumption_list[:3]
-
-# Print them out
+    cpu_consumption_list.append([cpu, name, pid]) #list of CPU consumption with corresponding process'    
+cpu_consumption_list.sort(reverse=True) #sort from the end
+top_3 = cpu_consumption_list[:3] #sort the top three
 for item in top_3:
-    print(f"Process: {item[1]}, CPU: {item[0]}%")
+    print(f"Process: {item[1]}, CPU: {item[0]:.2f}%")
+
+#top three per RAM consumption usage
+mem_consumption_list = []
+for pid, details in dictionary_of_pid.items(): #loop through the dictionary 
+    mem = details['ram_percent']
+    name = details['name']
+    mem_consumption_list.append([mem, name, pid]) #list of RAM consumption with corresponding process'    
+mem_consumption_list.sort(reverse=True) #sort from the end
+top_3 = mem_consumption_list[:3] #sort the top three
+for item in top_3:
+    print(f"Process: {item[1]}, RAM: {item[0]:.2f}%")
+
+
 
 """ informations about folder """
 
-folder_to_analyze = pathlib.Path ("C:/Users/pc/Desktop/AAA")
-extensions = ['.txt', '.py', '.pdf', '.jpg']
-count_ext = {ext : 0 for ext in extensions}
+folder_to_analyze = pathlib.Path ("C:/Users/pc/Desktop/AAA") #get the path of the folder to analyze (to change depending on the system)
+extensions = ['.txt', '.py', '.pdf', '.jpg'] #list of extenstions to count
+count_ext = {ext : 0 for ext in extensions} #dictionary of extensions and their amount
 
-for file in folder_to_analyze.rglob('*'):
+for file in folder_to_analyze.rglob('*'): #looping through the entirety of the folder (global)
     if file.suffix in count_ext:
         count_ext[file.suffix] += 1
 
 pprint.pprint(count_ext)
 
-total_files = sum(count_ext.values())
+total_files = sum(count_ext.values()) #sum of the amount of extensions 
 if total_files > 0:
-    for ext, count in count_ext.items():
+    for ext, count in count_ext.items(): #count the extensions 
         percentile = (count / total_files) * 100
         print(f"{ext} : {percentile:.2f}%") # :.2f format decimal
 else:
