@@ -3,77 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Challenge Triple A</title>
+    <title>Dashboard Monitoring</title>
     <link rel="stylesheet" href="/web_pages/template.css">
     <link rel="stylesheet" href="./web_pages/media_querries.css">
 </head>
 <header>
-    <h1 class="title"> Challenge triple A </h1>
+    <h1 class="title"> Dashboard Monitoring of {{machine}} </h1>
 </header>
 <body>
     <main>
-        <div class="div">
+        <div class="grid">
 
             <section class="system">
-                <h2 class="systeme_title">
-                    systeme:
-                </h2>
-                <h3>
-                    device name : {{machine}}
-                </h3>
+                <h2 class="systeme_title"> systeme : </h2>
+                <h3> device name : {{machine}} </h3>
                 <h3> os : {{os}} </h3>
-                <h3>boot time/s {{boot_time_sec}} </h3>
+                <h3> boot time/s {{boot_time_sec}} </h3>
                 <h3> uptime {{boot_time}} </h3>
-                <h3>users : {{amount_of_users}} </h3>
-                
+                <h3> users : {{amount_of_users}} </h3>
             </section>
             
             <section class="CPU">
-                
-                <h2>   CPU     </h2>
+                <h2> CPU </h2>
                 <h3> cores : {{cores}} </h3>
-                <h3>frequency : {{freq}} </h3>
-                <h3>   cpu usage : {{cpu_usage}}  </h3>
+                <h3> frequency : {{freq}} </h3>
+                <h3> cpu usage : {{cpu_usage}} </h3>
             </section>
             
             <section class="memory">
-                <h2>
-                    memoire :
-                </h2>
-                <!-- mettre un graphique a la place -->
-                <h3>RAM</h3>
-                <h3>total ram : {{total_ram}} </h3>
-                <h3>used ram : {{used_ram_gb}} GB </h3>
+                <h2> memoire : </h2>
+                <h3> RAM </h3>
+                <h3> total ram : {{total_ram}} </h3>
+                <h3> used ram : {{used_ram_gb}} GB </h3>
                 <h3> percentage memory : {{percentage_memory}} % </h3>
             </section>
             
         </div>
-        <div class="div">
+        <div class="grid">
             <section class="network">
                 <h2>Network</h2>
-                <h3>
-                    IP adress : {{ip_addr}}
-                </h3>
+                <h3> IP adress : {{ip_addr}} </h3>
             </section>
             
             <section class="process">
-                <h2>
-                    process RAM
-                </h2>
-                <h3> {{top_ram_processes}} </h3>
-                <h2>
-                    process CPU
-                </h2>
-                <h3>
-                    {{top_cpu_processes}}
-                </h3>
+                <h2> process RAM </h2>
+                <tbody>
+                    {% for item in top_3_ram %}
+                    <tr>
+                        
+                        <td>{{ top_ram_processes[1] }}</td> 
+                        <td>{{ top_ram_processes[0] }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+                <h2> process CPU </h2>
+                <h3> {{top_cpu_processes}} </h3>
             </section>
             
             <section class="folder">
-                <h2>
-                    file data
-                </h2>
-
+                <h2> file data </h2>
                 <h3> {{amount_files_per_extensions}} </h3>
                 <h3> {{percentage_files}} % </h3>
             </section>
@@ -82,8 +71,8 @@
         
     <footer>
         <p>
-            <a href="https://github.com/hugo-belaloui/AAA"><img src="/image/logo git hub.png" alt="" class="git_logo"></a>
+            <a href="https://github.com/hugo-belaloui/AAA"><img src="../images/logo git hub.png" alt="" class="git_logo"></a>
         </p>
     </footer>
-  </body>
+</body>
 </html>
