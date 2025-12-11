@@ -19,21 +19,21 @@
                     systeme:
                 </h2>
                 <h3>
-                    device name : {{machine}}
+                    device name : goat
                 </h3>
-                <h3> os : {{os}} </h3>
-                <h3>boot time/s {{boot_time_sec}} </h3>
-                <h3> uptime {{boot_time}} </h3>
-                <h3>users : {{amount_of_users}} </h3>
+                <h3> os : Windows-11-10.0.26200-SP0 </h3>
+                
+                <h3> uptime  </h3>
+                <h3>users : 1 </h3>
                 
             </section>
             
             <section class="CPU">
                 
                 <h2>   CPU     </h2>
-                <h3> cores : {{cores}} </h3>
-                <h3>frequency : {{freq}} </h3>
-                <h3>   cpu usage : {{cpu_usage}}  </h3>
+                <h3> cores : 12 </h3>
+                <h3>frequency : 2000.0 </h3>
+                <h3>   cpu usage : 15.0  </h3>
             </section>
             
             <section class="memory">
@@ -42,17 +42,17 @@
                 </h2>
                 <!-- mettre un graphique a la place -->
                 <h3>RAM</h3>
-                <h3>total ram : {{total_ram}} </h3>
-                <h3>used ram : {{used_ram_gb}} GB </h3>
-                <h3> percentage memory : {{percentage_memory}} % </h3>
+                <h3>total ram : 15.020118713378906 </h3>
+                <h3>used ram : 12.920402526855469 GB </h3>
+                <h3> 86.0  </h3>
             </section>
             
         </div>
         <div class="div">
             <section class="network">
-                <h2>Network</h2>
+                <h2>Réseau</h2>
                 <h3>
-                    IP adress : {{ip_addr}}
+                    IP adress : 10.10.13.205
                 </h3>
             </section>
             
@@ -60,25 +60,26 @@
                 <h2>
                     process RAM
                 </h2>
-                <h3> {{top_ram_processes}} </h3>
+                <h3> [[10.114125087557023, 'MemCompression', 3832], [4.236337675755327, 'dwm.exe', 2012], [2.502645123702391, 'explorer.exe', 11620]] </h3>
                 <h2>
                     process CPU
                 </h2>
                 <h3>
-                    {{top_cpu_processes}}
+                    [[83.29166666666667, 'System Idle Process', 0], [8.325000000000001, 'python.exe', 57148], [2.6083333333333334, 'System', 4]]
                 </h3>
             </section>
             
             <section class="folder">
                 <h2>
-                    file data
+                    utilisations de fichier
                 </h2>
 
-                <h3> {{amount_files_per_extensions}} </h3>
-                <h3> {{percentage_files}} % </h3>
+                <h3> 0.0 % </h3>
+                <h3> {'.txt': 0, '.py': 1, '.pdf': 0, '.jpg': 0} </h3>
             </section>
         </div>
     </main>
+    <img src="camembert.png" alt="Diagramme circulaire" width="400" height="400">
         
     <footer>
         <p>
