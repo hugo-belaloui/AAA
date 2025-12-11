@@ -106,24 +106,24 @@
                         <h2> Process </h2>
                         <div class="card_content">
                             <div class="row">
-                                <span class="left">Top RAM processes:</span>
+                                <span class="middle">Top RAM processes:</span>
                             </div>
 
                             {% for item in top_ram_processes %}
                             <div class="row">
-                                <span class="left">{{ item[1] }} :</span>
-                                <span class="value">{{ item[0] }}%</span>
+                                <span class="left">{{item[1]}} :</span>
+                                <span class="value">{{item[0]}}%</span>
                             </div>
                             {% endfor %}
 
                             <div class="row">
-                                <span class="left">Top CPU processes:</span>
+                                <span class="middle">Top CPU processes:</span>
                             </div>
 
                             {% for item in top_cpu_processes %}
                             <div class="row">
-                                <span class="left">{{ item[1] }} :</span>
-                                <span class="value">{{ item[0] }}%</span>
+                                <span class="left">{{item[1]}} :</span>
+                                <span class="value">{{item[0]}}%</span>
                             </div>
                             {% endfor %}
                         </div>
@@ -136,14 +136,26 @@
                             Files
                         </h2>
                         <div class="card_content">
+                            <div class="middle">
+                            <span>Files type:</span>
+                        </div>
+
+                        {% for ext, count in amount_files_per_extensions.items() %}
+                        <div class="row">
+                            <span class="left">{{ext}} :</span>
+                            <span class="value">{{count}}</span>
+                        </div>
+                        {% endfor %}
                             <div class="row">
-                                <span class="left">Files type:</span>
-                                <span class="value"> {{amount_files_per_extensions}} </span>
+                                <span class="middle">Files percentage:</span>
                             </div>
+
+                            {% for ext, perc in percentage_files.items() %}
                             <div class="row">
-                                <span class="left"> Files percentage: </span>
-                                <span class="value"> {{percentage_files}} </span>
+                                <span class="left">{{ext}} :</span>
+                                <span class="value">{{perc}}%</span>
                             </div>
+                            {% endfor %}
                         </div>
                     </section>
                 </div>

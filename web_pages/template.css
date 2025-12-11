@@ -64,12 +64,17 @@ h2 {
 
 .left {
     color: #6b7280;
-    font-weight: 500;
+    font-weight: bolder;
 }
 
 .value {
-    font-weight: 600;
+    font-weight: bold;
     color: #1f2937
+}
+
+.middle{
+    color: #013c7c;
+    font-weight: bolder;
 }
 
 .system{
