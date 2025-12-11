@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../web_pages/template.css">
-        <link rel="stylesheet" href="../web_pages/media_queries_tablet.css">
+        <link rel="stylesheet" href="../web_pages/media_queries.css">
         <link rel="stylesheet" href="../web_pages/media_querries_phone.css">
         <title>Challenge Triple A - Dashboard</title>
 
@@ -14,7 +14,7 @@
 
         <header>
             <div class="title">
-                Dashboard Monitoring {{machine}}
+                Dashboard Monitoring goat
             </div>
         </header>
 
@@ -25,20 +25,20 @@
                         <h2> System </h2>
                         <div class="card_content">
                             <div class="row">
-                                <span class="left">OS:</span>
-                                <span class="value"> {{os}} </span>
+                                <span class="left">OS</span>
+                                <span class="value"> Windows-11-10.0.26200-SP0 </span>
                             </div>
                             <div class="row">
-                                <span class="left">Name:</span>
-                                <span class="value"> {{machine}} </span>
+                                <span class="left">Name</span>
+                                <span class="value"> goat </span>
                             </div>
                             <div class="row">
                                 <span class="left">Uptime:</span>
-                                <span class="value"> {{boot_time_since_boot_sec}} seconds </span>
+                                <span class="value"> 33900.60717344284 seconds </span>
                             </div>
                             <div class="row">
                                 <span class="left">Users:</span>
-                                <span class="value"> {{amount_of_users}} </span>
+                                <span class="value"> 1 </span>
                             </div>
                         </div>
                     </section>
@@ -46,20 +46,20 @@
 
                 <div class="CPU">
                     <section class="card">
-                        <h2> CPU: </h2>
+                        <h2> CPU </h2>
                         <div class="card_content">
                             <div class="row">
                                 <span class="left"> cores: </span>
-                                <span class="value"> {{cores}} </span>
+                                <span class="value"> 12 </span>
                             </div>
                             <div class="row">
                                 <span class="left"> Frequency: </span>
-                                <span class="value"> {{freq}} GHz </span>
+                                <span class="value"> 1.953125 GHz </span>
                             </div>
                             <div>
                                 <div class="row">
                                     <span class="left">Utilization:</span>
-                                    <span class="value"> {{cpu_usage}}% </span>
+                                    <span class="value"> 33.6% </span>
                                 </div>
                             </div>
                         </div>
@@ -74,12 +74,12 @@
                         <div class="card_content">
                             <div class="row">
                                 <span class="left">Total / in use:</span>
-                                <span class="value"> {{total_ram}} / {{used_ram_gb}} GB </span>
+                                <span class="value"> 15.020118713378906 / 11.7 GB </span>
                             </div>
                             <div>
                                 <div class="row">
                                     <span class="left">Usage:</span>
-                                    <span class="value"> {{percentage_memory}} % </span>
+                                    <span class="value"> 77.9 % </span>
                                 </div>
                             </div>
                             
@@ -95,7 +95,7 @@
                         <div class="card_content">
                             <div class="row">
                                 <span class="left">IP Adress:</span>
-                                <span class="value"> {{ip_addr}} </span>
+                                <span class="value"> 192.168.1.10 </span>
                             </div>
                         </div>
                     </section>
@@ -107,11 +107,11 @@
                         <div class="card_content">
                             <div class="row">
                                 <span class="left"> RAM:</span>
-                                <span class="value"> {{top_ram_processes}} </span>
+                                <span class="value"> [[6.43, 'MemCompression'], [4.3, 'dwm.exe'], [2.52, 'Code.exe']] </span>
                             </div>
                             <div class="row">
                                 <span class="left"> CPU: </span>
-                                <span class="value"> {{top_cpu_processes}} </span>
+                                <span class="value"> [[82.39, 'System Idle Process'], [8.1, 'python.exe'], [1.47, 'System']] </span>
                             </div>
                         </div>
                     </section>
@@ -125,11 +125,11 @@
                         <div class="card_content">
                             <div class="row">
                                 <span class="left">Files type:</span>
-                                <span class="value"> {{amount_files_per_extensions}} </span>
+                                <span class="value"> {'.txt': 0, '.py': 0, '.pdf': 0, '.jpg': 0} </span>
                             </div>
                             <div class="row">
                                 <span class="left"> Files percentage: </span>
-                                <span class="value"> {{percentage_files}} </span>
+                                <span class="value"> {} </span>
                             </div>
                         </div>
                     </section>

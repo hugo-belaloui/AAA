@@ -1,3 +1,5 @@
+@media only screen and (max-width:1025px) {
+
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: #ffffff;
@@ -5,10 +7,8 @@ body {
 
 header {
     background: linear-gradient(135deg, #021b3b, #013c7c, #021b3b);
-    padding: 1.5rem ;
     text-shadow: 5px 5px 10px black;
     text-align: center;
-    position: sticky;
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -16,8 +16,8 @@ header {
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
-    grid-row: 1fr 1fr;
+    grid-template-columns: 1fr 1fr  ;
+    grid-row: 1fr 1fr 1fr;
     gap: 1.5rem;
     padding: 2rem;
 }
@@ -83,23 +83,23 @@ h2 {
 }
 
 .Memory{
-    grid-column: 3/4;
-    grid-row: 1/2;
-}
-
-.Network{
     grid-column: 1/2;
     grid-row: 2/3;
 }
 
-.Process{
+.Network{
     grid-column: 2/3;
     grid-row: 2/3;
 }
 
+.Process{
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
 .Files{
-    grid-column: 3/4;
-    grid-row: 2/3;
+    grid-column: 2/3;
+    grid-row: 3/4;
 }
 
 footer {
@@ -113,4 +113,4 @@ footer {
     width: 70px;
 }
 
-
+}
