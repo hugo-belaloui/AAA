@@ -23,7 +23,7 @@ usage_cpu = psutil.cpu_percent(0) #var that stores pourcentage of CPU usage in a
 
 memory = psutil.virtual_memory() #var that stores a tuple a tuple of informations about memory
 used_memory = round(memory.used / (1024 ** 3), 2)#var storing the used  memory in gb round() to get only two decimals
-total_memory = memory.total / round((1024 ** 3), 2) #var storing the total memory in gb
+total_memory = round(memory.total / (1024 ** 3), 2) #var storing the total memory in gb
 used_memory_percent = memory.percent #var storing the percentage of used memory 
 
 """ informations systeme """
