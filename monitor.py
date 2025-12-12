@@ -1,23 +1,29 @@
 import psutil # library to monitor the system
 import platform 
 import time #library for time mangement 
+import datetime
 import socket #library for network management to retrieve ip
 import pprint #library to display dicitionary in a pretty way
 import pathlib
 import jinja2
 
+#time_delay = 1
+#while True:
+
 """ Jinja2 setup"""
 
-env = jinja2.Environment(loader=jinja2.FileSystemLoader('web_pages'))
+env = jinja2.Environment(loader=jinja2.FileSystemLoader('c:/Users/pc/Downloads/AAA/'))
 template = env.get_template('template.html')
-output_folder = pathlib.Path("C:/Users/sofia/Downloads/AAA/web_pages")
+output_folder = pathlib.Path("c:/Users/pc/Downloads/AAA/")
 output_file_path = output_folder / "index.html"
+timestamp = datetime.datetime.now()
+#print (timestamp)
 
 """ informations CPU """
 
 amount_of_cores = psutil.cpu_count() #var that stores the amount of cores 
 current_cpu_frequency = round(psutil.cpu_freq().current / 1024, 2) #var that stores the current CPU frequency
-usage_cpu = psutil.cpu_percent(0) #var that stores pourcentage of CPU usage in an interval of X seconds
+usage_cpu = psutil.cpu_percent(1) #var that stores pourcentage of CPU usage in an interval of X seconds
 
 """ informations RAM """
 
@@ -42,22 +48,21 @@ ip_address = socket.gethostbyname(host) #get ip adress using the host's name
 dictionary_of_pid= {} #dictionary containing the processes 
 processes = list(psutil.process_iter())
 
-
 for p in processes: #go through all the processes 
         p.cpu_percent() # get the interval
 
-time.sleep(0)
+time.sleep(1)
 
 for p in processes:
-        cpu = p.cpu_percent() / amount_of_cores #CPU usage per core of process
-        name = p.name() #process' name
-        mem = p.memory_percent() #memory usage of process
-        
-        dictionary_of_pid[p.pid] = { #fill the dictionary with corresponding items
-            'name': name,
-            'ram_percent': mem,
-            'cpu_percent': cpu
-        }
+            cpu = p.cpu_percent() / amount_of_cores #CPU usage per core of process
+            name = p.name() #process' name
+            mem = p.memory_percent() #memory usage of process
+            dictionary_of_pid[p.pid] = { #fill the dictionary with corresponding items
+                'name': name,
+                'ram_percent': mem,
+                'cpu_percent': cpu
+            }
+
 #pprint.pprint(dictionary_of_pid) #display the dictionary using pretty print 
 
 #top three per CPU consumption usage
@@ -82,12 +87,12 @@ top_3_ram = mem_consumption_list[:3] #sort the top three
 for item in top_3_ram:
     print(f"Process: {item[1]}, RAM: {item[0]:.2f}%")
 
-
-
 """ informations about folder """
 
-folder_to_analyze = pathlib.Path ("C:/Users/yaour/Desktop/AAA/AAA") #get the path of the folder to analyze (to change depending on the system)
-extensions = ['.txt', '.py', '.pdf', '.jpg'] #list of extenstions to count
+folder_to_analyze = pathlib.Path ("c:/Users/pc/Downloads/AAA/") #get the path of the folder to analyze (to change depending on the system)
+
+extensions = ['.txt', '.py', '.pdf', '.jpg', 'png', '.webp', '.jpeg', '.html', '.css', '.md' ] #list of extenstions to count
+
 count_ext = {ext : 0 for ext in extensions} #dictionary of extensions and their amount
 
 for file in folder_to_analyze.rglob('*'): #looping through the entirety of the folder (global) recursive
@@ -100,16 +105,20 @@ pprint.pprint(count_ext)
 total_files = sum(count_ext.values()) #sum of the amount of extensions 
 if total_files > 0:
     for exten, count in count_ext.items(): #count the extensions 
-        pct = (count / total_files) * 100
+        pct = round((count / total_files) * 100, 2)
         percent_ext[exten] = pct 
         print(f"{exten} : {pct:.2f}%") # :.2f format decimal
 else:
     print("Aucun fichier correspondant trouvé pour calculer des pourcentages.")
+print("OK")
 
 """ index generation"""
 
 output = template.render(
+    #delay = time_delay,
+    
     # System Info
+
     machine=machine_name, #var storing the name of the machine
     os=os_name_version, #var storing the name and version of OS
     boot_time_sec=boot_time, #var storing the boot time
@@ -117,25 +126,31 @@ output = template.render(
     amount_of_users = #var storing time since boot
     number_users, #get the amount of users
     ip_addr = ip_address, #get ip adress using the host's name
-    
+    ts = timestamp,
+
     # CPU Data
+
     cores = amount_of_cores,#var that stores the amount of cores 
     freq = current_cpu_frequency,#var that stores the current CPU frequency
     cpu_usage = usage_cpu,#var that stores pourcentage of CPU usage
-    
+
     # RAM Data
+
     total_ram=total_memory, #var storing the total memory
     used_ram_gb=used_memory, #var storing the used memory
     percentage_memory = used_memory_percent, #var storing the percentage of used memory
-    
+
     # Process Lists (The Top 3 lists)
+
     top_cpu_processes=top_3_cpu, #var storing the top 3 process in cpu usage
     top_ram_processes=top_3_ram, #var storing the top 3 process in cpu usage
 
     # File Data
+
     amount_files_per_extensions=count_ext, #list of extenstions to count
     percentage_files = percent_ext
 )
 
 with open(output_file_path, "w") as file:
     file.write(output)
+#    time.sleep(time_delay)

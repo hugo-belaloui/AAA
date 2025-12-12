@@ -4,9 +4,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../web_pages/template.css">
-        <link rel="stylesheet" href="../web_pages/media_queries_tablet.css">
-        <link rel="stylesheet" href="../web_pages/media_querries_phone.css">
+        <meta http-equiv="refresh" content="{{ delay }}">
+        <link rel="stylesheet" href="./template.css">
+        <link rel="stylesheet" href="./media_queries_tablet.css">
+        <link rel="stylesheet" href="./media_querries_phone.css">
         <title>Challenge Triple A - Dashboard</title>
 
     </head>
@@ -14,7 +15,7 @@
 
         <header>
             <div class="title">
-                Dashboard Monitoring {{machine}}
+                Dashboard Monitoring {{machine}} <br>Last Generation : {{ts}}
             </div>
         </header>
 
@@ -34,7 +35,7 @@
                             </div>
                             <div class="row">
                                 <span class="left">Uptime:</span>
-                                <span class="value"> {{boot_time_since_boot_sec}} seconds </span>
+                                <span class="value"> {{boot_time_since_boot_sec}} hours </span>
                             </div>
                             <div class="row">
                                 <span class="left">Users:</span>
@@ -59,7 +60,7 @@
                             <div>
                                 <div class="row">
                                     <span class="left">Utilization:</span>
-                                    <span class="value"> {{cpu_usage}}% </span>
+                                    <span class="value"> {{cpu_usage}} % </span>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +113,7 @@
                             {% for item in top_ram_processes %}
                             <div class="row">
                                 <span class="left">{{item[1]}} :</span>
-                                <span class="value">{{item[0]}}%</span>
+                                <span class="value">{{item[0]}} %</span>
                             </div>
                             {% endfor %}
 
@@ -123,7 +124,7 @@
                             {% for item in top_cpu_processes %}
                             <div class="row">
                                 <span class="left">{{item[1]}} :</span>
-                                <span class="value">{{item[0]}}%</span>
+                                <span class="value">{{item[0]}} %</span>
                             </div>
                             {% endfor %}
                         </div>
@@ -153,7 +154,7 @@
                             {% for ext, perc in percentage_files.items() %}
                             <div class="row">
                                 <span class="left">{{ext}} :</span>
-                                <span class="value">{{perc}}%</span>
+                                <span class="value">{{perc}} %</span>
                             </div>
                             {% endfor %}
                         </div>
