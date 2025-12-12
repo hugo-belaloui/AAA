@@ -90,7 +90,7 @@ folder_to_analyze = pathlib.Path ("C:/Users/yaour/Desktop/AAA/AAA") #get the pat
 extensions = ['.txt', '.py', '.pdf', '.jpg'] #list of extenstions to count
 count_ext = {ext : 0 for ext in extensions} #dictionary of extensions and their amount
 
-for file in folder_to_analyze.rglob('*'): #looping through the entirety of the folder (global)
+for file in folder_to_analyze.rglob('*'): #looping through the entirety of the folder (global) recursive
     if file.suffix in count_ext:
         count_ext[file.suffix] += 1
 
