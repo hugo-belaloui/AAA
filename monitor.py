@@ -86,7 +86,7 @@ for item in top_3_ram:
 
 """ informations about folder """
 
-folder_to_analyze = pathlib.Path ("C:/Users/pc/Desktop/AAA") #get the path of the folder to analyze (to change depending on the system)
+folder_to_analyze = pathlib.Path ("C:/Users/yaour/Desktop/AAA/AAA") #get the path of the folder to analyze (to change depending on the system)
 extensions = ['.txt', '.py', '.pdf', '.jpg'] #list of extenstions to count
 count_ext = {ext : 0 for ext in extensions} #dictionary of extensions and their amount
 
