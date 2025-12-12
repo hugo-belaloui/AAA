@@ -10,13 +10,13 @@ import jinja2
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('web_pages'))
 template = env.get_template('template.html')
-output_folder = pathlib.Path("C:/Users/yaour/Desktop/AAA/AAA")
+output_folder = pathlib.Path("C:/Users/sofia/Downloads/AAA/web_pages")
 output_file_path = output_folder / "index.html"
 
 """ informations CPU """
 
 amount_of_cores = psutil.cpu_count() #var that stores the amount of cores 
-current_cpu_frequency = psutil.cpu_freq().current / 1024 #var that stores the current CPU frequency
+current_cpu_frequency = round(psutil.cpu_freq().current / 1024, 2) #var that stores the current CPU frequency
 usage_cpu = psutil.cpu_percent(0) #var that stores pourcentage of CPU usage in an interval of X seconds
 
 """ informations RAM """
@@ -31,7 +31,7 @@ used_memory_percent = memory.percent #var storing the percentage of used memory
 machine_name = platform.node() #var storing the name of the machine
 os_name_version =platform.platform() #var storing the name and version of OS
 boot_time = psutil.boot_time() #var storing the boot time
-time_since_boot = (time.time()-psutil.boot_time()) #var storing time since boot
+time_since_boot = round((time.time()-psutil.boot_time()) / 3600 , 2) #var storing time since boot
 users = psutil.users()# Get the list of users
 number_users = len(users) #get the length of the list of users in other words the amount of users
 host = socket.gethostname() #get the host's name (machine)
